@@ -10,6 +10,7 @@ from selenium.common.exceptions import TimeoutException, WebDriverException, NoS
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from write_to_db import *
+from handle_pdf import *
 import os
 import tempfile
 import requests
@@ -17,19 +18,23 @@ import PyPDF2
 import pdfplumber
 import random
 
+log_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler = logging.FileHandler('scraper.log', mode='w', encoding='utf-8')
+file_handler.setFormatter(log_formatter)
+file_handler.setLevel(logging.INFO)
 
-# Setup logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(log_formatter)
+console_handler.setLevel(logging.WARNING)  # Only show warnings/errors in console
 
-
+logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler])
 
 URL = "https://www.justetf.com/de/etf-list-overview.html#aktien_digitalisierung"
 BASE_URL = "https://www.justetf.com"
 PAGE_LOAD_TIMEOUT = 30
 ELEMENT_WAIT_TIMEOUT = 20
 COOKIE_BUTTON_TEXT = "Auswahl erlauben"
-MAX_TABLES = 10  # Maximum number of tables to process
-# SECTION_HEADER_TEXT = "Aktien Asien-Pazifik" # No longer primary targeting mechanism
+MAX_TABLES = 1  # Maximum number of tables to process
 
 def setup_driver():
     """
@@ -57,117 +62,6 @@ def setup_driver():
         logging.error(f"Unexpected error during WebDriver setup: {e}")
         return None
 
-# Removed scroll_until_element_found function
-
-def find_first_two_etf_links(driver):
-    """
-    Parses the current page to find the first two ETF profile links where the 6th column contains 'Ausschütt'.
-    Args:
-        driver (webdriver.Chrome): The Selenium WebDriver instance.
-    Returns:
-        list: List of up to two ETF profile URLs (strings).
-    """
-    logging.info("Parsing page HTML to find the first two matching ETF links...")
-    soup = BeautifulSoup(driver.page_source, 'html.parser')
-
-    target_table_selector = "table.table.table-striped.dataTable.no-footer"
-    data_tables = soup.select(target_table_selector)
-    logging.info(f"Found {len(data_tables)} table(s) matching selector '{target_table_selector}'.")
-
-    if not data_tables:
-        logging.warning(f"No tables found matching '{target_table_selector}'.")
-        return []
-
-    found_links = []
-    for table_index, table in enumerate(data_tables):
-        logging.info(f"Processing Table {table_index + 1}...")
-        table_body = table.find('tbody')
-        if not table_body:
-            logging.warning(f"  Table {table_index + 1} has no tbody. Skipping.")
-            continue
-
-        rows = table_body.find_all('tr')
-        logging.info(f"  Found {len(rows)} rows in Table {table_index + 1} tbody.")
-
-        for row_index, row in enumerate(rows):
-            columns = row.find_all('td', recursive=False)
-            if len(columns) >= 6:
-                column_6_text = columns[5].get_text(strip=True)
-                if column_6_text.startswith("Ausschütt"):
-                    first_column = columns[0]
-                    link_tag = first_column.find('a')
-                    if link_tag and link_tag.find('i') is None:
-                        anchor_text = link_tag.get_text(strip=True)
-                        anchor_href = link_tag.get('href')
-                        if anchor_href:
-                            if anchor_href.startswith('/'):
-                                anchor_href = BASE_URL + anchor_href
-                            logging.info(f"  FOUND MATCH: Table {table_index+1}, Row {row_index+1}: Link='{anchor_text}', Col6='{column_6_text}', Href='{anchor_href}'")
-                            found_links.append(anchor_href)
-                            if len(found_links) == 2:
-                                return found_links
-    if not found_links:
-        logging.warning("No ETF links matching all criteria found on the page.")
-    return found_links
-
-def download_pdf(url):
-    """
-    Downloads a PDF from the given URL to a temporary file and returns the file path.
-    Args:
-        url (str): The URL of the PDF to download.
-    Returns:
-        str or None: The file path to the downloaded PDF, or None if download fails.
-    """
-    try:
-        response = requests.get(url, stream=True, timeout=30)
-        response.raise_for_status()
-        with tempfile.NamedTemporaryFile(delete=False, suffix='.pdf') as tmp_file:
-            for chunk in response.iter_content(chunk_size=8192):
-                tmp_file.write(chunk)
-            return tmp_file.name
-    except Exception as e:
-        logging.error(f"Failed to download PDF from {url}: {e}")
-        return None
-
-def extract_dividendenrendite_from_pdf(pdf_path):
-    """
-    Extracts the percentage value next to 'Dividendenrendite', 'Dividende', or 'Rendite' (case-insensitive, in that order of priority) from the PDF using pdfplumber.
-    Handles cases where the value is on the same line or the next line. Only valid percentage values (e.g., 2,02%) are returned.
-    Args:
-        pdf_path (str): The file path to the PDF file.
-    Returns:
-        str: The extracted value (e.g., '2,02%'), or 'no DivRendite found' if not found.
-    """
-    import re
-    try:
-        with pdfplumber.open(pdf_path) as pdf:
-            text = "\n".join(page.extract_text() or "" for page in pdf.pages)
-        lines = text.splitlines()
-        # Priority order
-        keyword_priority = [r"Dividendenrendite", r"Dividende", r"Rendite"]
-        percent_pattern = r"([\d]{1,3}[\.,][\d]{1,3}\s*%|[\d]{1,3}\s*%)"
-        for kw in keyword_priority:
-            for i, line in enumerate(lines):
-                if re.search(kw, line, re.IGNORECASE):
-                    matches = re.findall(percent_pattern, line)
-                    matches = [m.strip() for m in matches if re.search(r"\d", m)]
-                    if matches:
-                        return matches[0]
-                    if i + 1 < len(lines):
-                        matches_next = re.findall(percent_pattern, lines[i+1])
-                        matches_next = [m.strip() for m in matches_next if re.search(r"\d", m)]
-                        if matches_next:
-                            return matches_next[0]
-            # Fallback: search the whole text for keyword followed by percentage
-            match = re.search(kw + r"[\s:]*([\d]{1,3}[\.,][\d]{1,3}\s*%|[\d]{1,3}\s*%)", text, re.IGNORECASE)
-            if match:
-                val = match.group(1).strip()
-                if re.search(r"\d", val):
-                    return val
-        return 'no DivRendite found'
-    except Exception as e:
-        logging.error(f"Failed to extract Dividendenrendite/Dividende/Rendite from PDF: {e}")
-        return 'no DivRendite found'
 
 def parse_tables(driver):
     """

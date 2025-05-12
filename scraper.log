@@ -1,0 +1,45 @@
+2025-05-12 13:46:37,595 - INFO - ====== WebDriver manager ======
+2025-05-12 13:46:37,751 - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-12 13:46:37,830 - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-12 13:46:37,906 - INFO - Driver [/Users/paul/.wdm/drivers/chromedriver/mac64/136.0.7103.92/chromedriver-mac-arm64/chromedriver] found in cache
+2025-05-12 13:46:39,001 - INFO - WebDriver setup complete.
+2025-05-12 13:46:39,001 - INFO - Fetching data from https://www.justetf.com/de/etf-list-overview.html#aktien_digitalisierung...
+2025-05-12 13:46:41,898 - INFO - Waiting for cookie consent button: 'Auswahl erlauben'...
+2025-05-12 13:46:41,914 - INFO - Cookie button found. Clicking...
+2025-05-12 13:46:41,981 - INFO - Clicked cookie button. Pausing for page to settle...
+2025-05-12 13:46:44,986 - INFO - Waiting for page content to stabilize after navigation/cookie handling...
+2025-05-12 13:46:50,787 - INFO - Found 230 table anchor links.
+2025-05-12 13:46:50,787 - INFO - 
+Jumping to table 1: Afrika (https://www.justetf.com/de/etf-list-overview.html#aktien_afrika)
+2025-05-12 13:46:52,757 - INFO - Found 6 total tables on the page
+2025-05-12 13:46:52,757 - INFO - Limiting processing to first 1 tables
+2025-05-12 13:46:52,758 - INFO - 
+Processing Aktien Afrika (Table 1 of 1)...
+2025-05-12 13:46:52,758 - INFO - Aktien Afrika: 2 rows, 0 Ausschütt matches.
+2025-05-12 13:46:52,758 - INFO - 
+Jumping to table 2: Asien-Pazifik (https://www.justetf.com/de/etf-list-overview.html#aktien_asien-pazifik)
+2025-05-12 13:46:54,705 - INFO - Found 6 total tables on the page
+2025-05-12 13:46:54,705 - INFO - Limiting processing to first 1 tables
+2025-05-12 13:46:54,705 - INFO - 
+Processing Aktien Afrika (Table 1 of 1)...
+2025-05-12 13:46:54,705 - INFO - Aktien Afrika: 2 rows, 0 Ausschütt matches.
+2025-05-12 13:46:54,705 - INFO - 
+Jumping to table 3: Emerging Markets (https://www.justetf.com/de/etf-list-overview.html#aktien_emerging_markets)
+2025-05-12 13:46:56,677 - INFO - Found 7 total tables on the page
+2025-05-12 13:46:56,677 - INFO - Limiting processing to first 1 tables
+2025-05-12 13:46:56,677 - INFO - 
+Processing Aktien Afrika (Table 1 of 1)...
+2025-05-12 13:46:56,677 - INFO - Aktien Afrika: 2 rows, 0 Ausschütt matches.
+2025-05-12 13:46:56,677 - INFO - 
+Jumping to table 4: Europa (https://www.justetf.com/de/etf-list-overview.html#aktien_europa)
+2025-05-12 13:46:58,700 - INFO - Found 8 total tables on the page
+2025-05-12 13:46:58,700 - INFO - Limiting processing to first 1 tables
+2025-05-12 13:46:58,701 - INFO - 
+Processing Aktien Afrika (Table 1 of 1)...
+2025-05-12 13:46:58,701 - INFO - Aktien Afrika: 2 rows, 0 Ausschütt matches.
+2025-05-12 13:46:58,701 - INFO - 
+Jumping to table 5: Lateinamerika (https://www.justetf.com/de/etf-list-overview.html#aktien_lateinamerika)
+2025-05-12 13:46:59,321 - INFO - Closing WebDriver.
+2025-05-12 13:46:59,325 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(54, 'Connection reset by peer')': /session/d23262531da6672c0e6a49c881757a2e
+2025-05-12 13:46:59,328 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105563850>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/d23262531da6672c0e6a49c881757a2e
+2025-05-12 13:46:59,331 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105563790>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/d23262531da6672c0e6a49c881757a2e
