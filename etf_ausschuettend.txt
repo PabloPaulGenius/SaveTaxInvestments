@@ -1,0 +1,8 @@
+Name	TER	YTD	Fondsgröße	Auflagedatum	Ausschüttung	Replikation	ISIN	Dividendenrendite
+Amundi MSCI Pacific Ex Japan UCITS ETF Dist	0,12%	-1,17%	161	29.04.15	Ausschüttend	VollständigeReplikation	LU1220245556	no DivRendite found
+HSBC MSCI AC Far East ex Japan UCITS ETF USD (Dist)	0,45%	-1,83%	15	12.07.22	Ausschüttend	VollständigeReplikation	IE00022VXYM7	2,02%
+HSBC MSCI Pacific ex Japan UCITS ETF USD	0,15%	-1,14%	564	03.09.10	Ausschüttend	VollständigeReplikation	IE00B5SG8Z57	3,93%
+iShares MSCI AC Far East ex-Japan UCITS ETF	0,74%	-1,34%	695	28.10.05	Ausschüttend	VollständigeReplikation	IE00B0M63730	1,85%
+iShares MSCI Pacific ex-Japan UCITS ETF (Dist)	0,60%	-1,18%	186	17.04.09	Ausschüttend	VollständigeReplikation	IE00B4WXJD03	3,22%
+UBS ETF (LU) MSCI Pacific (ex Japan) UCITS ETF (USD) A-dis	0,14%	-1,32%	65	02.10.09	Ausschüttend	VollständigeReplikation	LU0446734526	3.82%
+Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF Distributing	0,15%	-0,50%	996	21.05.13	Ausschüttend	VollständigeReplikation	IE00B9F5YL18	3,5%

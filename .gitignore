@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Environment
+.env
+
+# Node
+node_modules/
+pnpm-lock.yaml
+
+# Selenium/Chromedriver
+chromedriver-mac-arm64/
+
+# VS Code (optional)
+.vscode/
+
+public/
+lib/
+hooks/
+.DS_Store
+components/
+app/
