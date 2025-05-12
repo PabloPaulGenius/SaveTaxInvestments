@@ -15,6 +15,7 @@ import tempfile
 import requests
 import PyPDF2
 import pdfplumber
+import random
 
 
 # Setup logging
@@ -22,11 +23,12 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 
 
-URL = "https://www.justetf.com/de/etf-list-overview.html#aktien_asien-pazifik"
+URL = "https://www.justetf.com/de/etf-list-overview.html#aktien_digitalisierung"
 BASE_URL = "https://www.justetf.com"
 PAGE_LOAD_TIMEOUT = 30
 ELEMENT_WAIT_TIMEOUT = 20
 COOKIE_BUTTON_TEXT = "Auswahl erlauben"
+MAX_TABLES = 10  # Maximum number of tables to process
 # SECTION_HEADER_TEXT = "Aktien Asien-Pazifik" # No longer primary targeting mechanism
 
 def setup_driver():
@@ -167,9 +169,9 @@ def extract_dividendenrendite_from_pdf(pdf_path):
         logging.error(f"Failed to extract Dividendenrendite/Dividende/Rendite from PDF: {e}")
         return 'no DivRendite found'
 
-def parse_first_three_tables(driver):
+def parse_tables(driver):
     """
-    Parses the first three tables on the page, logs the table name, number of rows, and number of 'Ausschütt' matches.
+    Parses up to MAX_TABLES tables on the page, logs the table name, number of rows, and number of 'Ausschütt' matches.
     Args:
         driver (webdriver.Chrome): The Selenium WebDriver instance.
     Returns:
@@ -178,8 +180,17 @@ def parse_first_three_tables(driver):
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     target_table_selector = "table.table.table-striped.dataTable.no-footer"
     data_tables = soup.select(target_table_selector)
+    
+    logging.info(f"Found {len(data_tables)} total tables on the page")
+    if len(data_tables) > MAX_TABLES:
+        logging.info(f"Limiting processing to first {MAX_TABLES} tables")
+        data_tables = data_tables[:MAX_TABLES]
+    
     etf_rows = []
-    for table_index, table in enumerate(data_tables[:3]):  # Only first 3 tables
+    for table_index, table in enumerate(data_tables):
+        if table_index >= MAX_TABLES:
+            break
+            
         # Find the closest previous <h3> tag for the table name
         table_name = None
         for prev in table.find_all_previous():
@@ -188,10 +199,14 @@ def parse_first_three_tables(driver):
                 break
         if not table_name:
             table_name = f"Table {table_index+1}"  # fallback
+            
+        logging.info(f"\nProcessing {table_name} (Table {table_index + 1} of {min(len(data_tables), MAX_TABLES)})...")
+        
         table_body = table.find('tbody')
         if not table_body:
-            logging.info(f"{table_name}: No tbody found. Skipping.")
+            logging.warning(f"{table_name}: No tbody found. Skipping.")
             continue
+            
         rows = table_body.find_all('tr')
         total_rows = len(rows)
         match_count = 0
@@ -245,9 +260,109 @@ def save_etf_data_to_txt(etf_data_list, filename):
                    etf.get('dividendenrendite', '')]
             f.write('\t'.join(row) + '\n')
 
+def scroll_to_load_all_tables(driver):
+    """
+    Scrolls to the bottom of the page gradually to ensure all tables are loaded.
+    Then scrolls back to top to ensure we can parse from the beginning.
+    """
+    logging.info("Starting gradual page scrolling to load all tables...")
+    
+    # Get initial page height
+    last_height = driver.execute_script("return document.body.scrollHeight")
+    
+    # Scroll down gradually
+    scrolls = 0
+    max_scrolls = 30  # Safety limit to prevent infinite loops
+    
+    while scrolls < max_scrolls:
+        # Scroll down in steps of 800-1000 pixels
+        driver.execute_script(f"window.scrollBy(0, {random.randint(800, 1000)});")
+        time.sleep(0.5)  # Short pause between scrolls
+        
+        # Every few scrolls, wait a bit longer to let content load
+        if scrolls % 5 == 0:
+            logging.info(f"Completed {scrolls} scrolls, pausing to let content load...")
+            time.sleep(2)
+        
+        # Check if we've reached the bottom
+        new_height = driver.execute_script("return document.body.scrollHeight")
+        if new_height == last_height:
+            # Try one more time with a longer wait
+            time.sleep(3)
+            new_height = driver.execute_script("return document.body.scrollHeight")
+            if new_height == last_height:
+                logging.info("Reached the bottom of the page")
+                break
+        
+        last_height = new_height
+        scrolls += 1
+    
+    # Scroll back to top to ensure we can parse from the beginning
+    logging.info("Scrolling back to top of the page...")
+    driver.execute_script("window.scrollTo(0, 0);")
+    time.sleep(2)  # Wait for the page to stabilize
+    
+    # Count tables after scrolling
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
+    tables_count = len(soup.select("table.table.table-striped.dataTable.no-footer"))
+    logging.info(f"After scrolling, found {tables_count} tables on the page")
+
+def get_table_anchors(driver):
+    """
+    Finds all anchor elements that link to ETF tables (class 'light-link' and 'category-link').
+    Returns a list of (anchor_element, anchor_text, anchor_href) tuples.
+    """
+    anchors = driver.find_elements(By.CSS_SELECTOR, 'a.light-link[category-link]')
+    anchor_info = []
+    for a in anchors:
+        text = a.text.strip()
+        href = a.get_attribute('href')
+        anchor_info.append((a, text, href))
+    logging.info(f"Found {len(anchor_info)} table anchor links.")
+    return anchor_info
+
+
+def parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES):
+    """
+    Iterates over all table anchor links, clicks each, waits for the table to load, and parses it.
+    Aggregates all ETF rows from all tables.
+    """
+    etf_rows = []
+    anchors = get_table_anchors(driver)
+    processed_tables = 0
+    last_table_name = None
+    for idx, (anchor, anchor_text, anchor_href) in enumerate(anchors):
+        if processed_tables >= max_tables:
+            break
+        logging.info(f"\nJumping to table {idx+1}: {anchor_text} ({anchor_href})")
+        try:
+            driver.execute_script("arguments[0].click();", anchor)
+        except Exception as e:
+            logging.warning(f"Could not click anchor {anchor_text}: {e}")
+            continue
+        # Wait for the table to load (wait for h3 header to change or table to appear)
+        try:
+            WebDriverWait(driver, ELEMENT_WAIT_TIMEOUT).until(
+                lambda d: anchor_text in d.page_source
+            )
+            time.sleep(1.5)  # Give extra time for table to render
+        except Exception as e:
+            logging.warning(f"Timeout waiting for table '{anchor_text}' to load: {e}")
+            continue
+        # Parse the table(s) now visible
+        table_rows = parse_tables(driver)
+        # Only add new tables (avoid duplicates if anchors point to same table)
+        new_rows = [row for row in table_rows if row.get('table_name') != last_table_name]
+        if new_rows:
+            last_table_name = new_rows[0].get('table_name')
+            etf_rows.extend(new_rows)
+            processed_tables += 1
+    logging.info(f"Total tables processed: {processed_tables}")
+    return etf_rows
+
 def scrape_etf_links():
     """
-    Main scraping function. Parses the first three tables, collects all Ausschütt ETF rows, downloads their factsheets, extracts Dividendenrendite, and saves all data to a .txt file.
+    Main scraping function. Iterates over all table anchors, collects Ausschütt ETF rows, downloads their factsheets, extracts Dividendenrendite, and saves all data to a .txt file.
     Returns:
         None
     """
@@ -277,11 +392,11 @@ def scrape_etf_links():
 
         logging.info("Waiting for page content to stabilize after navigation/cookie handling...")
         time.sleep(5)
-
-        # Step 1: Parse the first three tables and collect Ausschütt ETF rows
-        etf_rows = parse_first_three_tables(driver)
+        
+        # Instead of scrolling, iterate over all table anchors and parse each table
+        etf_rows = parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES)
         if not etf_rows:
-            print("No Ausschütt ETFs found in the first three tables.")
+            print("No Ausschütt ETFs found in tables.")
             return
 
         # Step 2: For each ETF, extract Dividendenrendite from factsheet if possible
