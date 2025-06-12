@@ -34,7 +34,7 @@ BASE_URL = "https://www.justetf.com"
 PAGE_LOAD_TIMEOUT = 30
 ELEMENT_WAIT_TIMEOUT = 20
 COOKIE_BUTTON_TEXT = "Auswahl erlauben"
-MAX_TABLES = 1  # Maximum number of tables to process
+MAX_TABLES = 2  # Maximum number of tables to process
 
 def setup_driver():
     """
@@ -63,96 +63,95 @@ def setup_driver():
         return None
 
 
-def parse_tables(driver):
+def parse_tables(driver, expected_table_name=None):
     """
-    Parses up to MAX_TABLES tables on the page, logs the table name, number of rows, and number of 'Ausschütt' matches.
+    Parses the current table that was navigated to via anchor click.
     Args:
         driver (webdriver.Chrome): The Selenium WebDriver instance.
+        expected_table_name (str): The name of the table we expect to find (from the anchor text).
     Returns:
         list of dict: Each dict contains ETF data for a row (columns 1-8, keys: 'name', 'ter', 'ytd', 'fondsgröße', 'auflagedatum', 'ausschüttung', 'replikation', 'isin', 'row', 'profile_url').
     """
+    # Wait for table to be visible
+    try:
+        WebDriverWait(driver, ELEMENT_WAIT_TIMEOUT).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "table.table.table-striped.dataTable.no-footer"))
+        )
+    except TimeoutException:
+        logging.warning("Timeout waiting for table to be visible")
+        return []
+
     soup = BeautifulSoup(driver.page_source, 'html.parser')
-    target_table_selector = "table.table.table-striped.dataTable.no-footer"
-    data_tables = soup.select(target_table_selector)
     
-    logging.info(f"Found {len(data_tables)} total tables on the page")
-    if len(data_tables) > MAX_TABLES:
-        logging.info(f"Limiting processing to first {MAX_TABLES} tables")
-        data_tables = data_tables[:MAX_TABLES]
+    # Find all tables and their associated h3 headers
+    tables_with_headers = []
+    for h3 in soup.find_all('h3'):
+        next_table = h3.find_next('table', class_='table-striped')
+        if next_table:
+            tables_with_headers.append((h3.get_text(strip=True), next_table))
+    
+    if not tables_with_headers:
+        logging.warning("No tables found on the page")
+        return []
+    
+    # If we have an expected table name, try to find that specific table
+    target_table = None
+    if expected_table_name:
+        for header, table in tables_with_headers:
+            if expected_table_name.lower() in header.lower():
+                target_table = table
+                table_name = header
+                break
+    
+    # If we couldn't find the specific table or no expected name was provided,
+    # use the first table (most recently loaded)
+    if not target_table:
+        table_name, target_table = tables_with_headers[0]
+    
+    logging.info(f"\nProcessing {table_name}...")
     
     etf_rows = []
-    for table_index, table in enumerate(data_tables):
-        if table_index >= MAX_TABLES:
-            break
+    table_body = target_table.find('tbody')
+    if not table_body:
+        logging.warning(f"{table_name}: No tbody found. Skipping.")
+        return []
             
-        # Find the closest previous <h3> tag for the table name
-        table_name = None
-        for prev in table.find_all_previous():
-            if prev.name == 'h3':
-                table_name = prev.get_text(strip=True)
-                break
-        if not table_name:
-            table_name = f"Table {table_index+1}"  # fallback
-            
-        logging.info(f"\nProcessing {table_name} (Table {table_index + 1} of {min(len(data_tables), MAX_TABLES)})...")
-        
-        table_body = table.find('tbody')
-        if not table_body:
-            logging.warning(f"{table_name}: No tbody found. Skipping.")
-            continue
-            
-        rows = table_body.find_all('tr')
-        total_rows = len(rows)
-        match_count = 0
-        for row in rows:
-            columns = row.find_all('td', recursive=False)
-            if len(columns) >= 8:
-                col6 = columns[5].get_text(strip=True)
-                if col6.startswith("Ausschütt"):
-                    # Extract ETF name from first <a> in first <td> (without <i> tag)
-                    first_td = columns[0]
-                    link_tag = first_td.find('a')
-                    if link_tag and not link_tag.find('i'):
-                        etf_name = link_tag.get_text(strip=True)
-                        href = link_tag.get('href')
-                        profile_url = BASE_URL + href if href and href.startswith('/') else href
-                    else:
-                        continue  # skip if no valid anchor
-                    match_count += 1
-                    etf_data = {
-                        'name': etf_name,
-                        'ter': columns[1].get_text(strip=True),
-                        'ytd': columns[2].get_text(strip=True),
-                        'fondsgröße': columns[3].get_text(strip=True),
-                        'auflagedatum': columns[4].get_text(strip=True),
-                        'ausschüttung': columns[5].get_text(strip=True),
-                        'replikation': columns[6].get_text(strip=True),
-                        'isin': columns[7].get_text(strip=True),
-                        'row': [c.get_text(strip=True) for c in columns[:8]],
-                        'profile_url': profile_url,
-                        'table_name': table_name
-                    }
-                    etf_rows.append(etf_data)
-        logging.info(f"{table_name}: {total_rows} rows, {match_count} Ausschütt matches.")
+    rows = table_body.find_all('tr')
+    total_rows = len(rows)
+    match_count = 0
+    for row in rows:
+        columns = row.find_all('td', recursive=False)
+        if len(columns) >= 8:
+            col6 = columns[5].get_text(strip=True)
+            if col6.startswith("Ausschütt"):
+                # Extract ETF name from first <a> in first <td> (without <i> tag)
+                first_td = columns[0]
+                link_tag = first_td.find('a')
+                if link_tag and not link_tag.find('i'): # 'i' is tag for Sparplan which we don't want
+                    etf_name = link_tag.get_text(strip=True)
+                    href = link_tag.get('href')
+                    profile_url = BASE_URL + href if href and href.startswith('/') else href
+                else:
+                    continue  # skip if no valid anchor
+                match_count += 1
+                etf_data = {
+                    'name': etf_name,
+                    'ter': columns[1].get_text(strip=True),
+                    'ytd': columns[2].get_text(strip=True),
+                    'fondsgröße': columns[3].get_text(strip=True),
+                    'auflagedatum': columns[4].get_text(strip=True),
+                    'ausschüttung': columns[5].get_text(strip=True),
+                    'replikation': columns[6].get_text(strip=True),
+                    'isin': columns[7].get_text(strip=True),
+                    'row': [c.get_text(strip=True) for c in columns[:8]],
+                    'profile_url': profile_url,
+                    'table_name': table_name
+                }
+                etf_rows.append(etf_data)
+    logging.info(f"{table_name}: {total_rows} rows, {match_count} Ausschütt matches.")
     return etf_rows
 
-def save_etf_data_to_txt(etf_data_list, filename):
-    """
-    Saves a list of ETF data dicts to a .txt file, one row per line, tab-separated. Includes Dividendenrendite if present.
-    Args:
-        etf_data_list (list of dict): List of ETF data dicts.
-        filename (str): Output filename.
-    Returns:
-        None
-    """
-    headers = ['Name', 'TER', 'YTD', 'Fondsgröße', 'Auflagedatum', 'Ausschüttung', 'Replikation', 'ISIN', 'Dividendenrendite']
-    with open(filename, 'w', encoding='utf-8') as f:
-        f.write('\t'.join(headers) + '\n')
-        for etf in etf_data_list:
-            row = [etf.get('name', ''), etf.get('ter', ''), etf.get('ytd', ''), etf.get('fondsgröße', ''),
-                   etf.get('auflagedatum', ''), etf.get('ausschüttung', ''), etf.get('replikation', ''), etf.get('isin', ''),
-                   etf.get('dividendenrendite', '')]
-            f.write('\t'.join(row) + '\n')
+
 
 def scroll_to_load_all_tables(driver):
     """
@@ -201,31 +200,28 @@ def scroll_to_load_all_tables(driver):
     tables_count = len(soup.select("table.table.table-striped.dataTable.no-footer"))
     logging.info(f"After scrolling, found {tables_count} tables on the page")
 
-def get_table_anchors(driver):
-    """
-    Finds all anchor elements that link to ETF tables (class 'light-link' and 'category-link').
-    Returns a list of (anchor_element, anchor_text, anchor_href) tuples.
-    """
-    anchors = driver.find_elements(By.CSS_SELECTOR, 'a.light-link[category-link]')
-    anchor_info = []
-    for a in anchors:
-        text = a.text.strip()
-        href = a.get_attribute('href')
-        anchor_info.append((a, text, href))
-    logging.info(f"Found {len(anchor_info)} table anchor links.")
-    return anchor_info
-
 
 def parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES):
     """
-    Iterates over all table anchor links, clicks each, waits for the table to load, and parses it.
-    Aggregates all ETF rows from all tables.
+    Iterates over all 'Aktien' table anchor links from JustETF website, clicks each anchor,
+    waits for the table to load, and parses only the current table that was navigated to.
+    Aggregates all ETF rows from all processed tables.
+    
+    Args:
+        driver (webdriver.Chrome): The Selenium WebDriver instance.
+        max_tables (int): Maximum number of tables to process. Defaults to MAX_TABLES.
+    
+    Returns:
+        list of dict: Aggregated list of ETF data dictionaries from all processed tables.
+        Each dict contains ETF data (name, ter, ytd, etc.) and the table name it came from.
     """
     etf_rows = []
-    anchors = get_table_anchors(driver)
+    anchors = driver.find_elements(By.CSS_SELECTOR, 'a[href*="aktien"]' and 'a[class="light-link"]')
     processed_tables = 0
-    last_table_name = None
-    for idx, (anchor, anchor_text, anchor_href) in enumerate(anchors):
+    aktien_anchors = [(a, a.text.strip(), a.get_attribute('href')) for a in anchors if "aktien" in a.get_attribute('href').lower()]
+    logging.info(f"Found {len(aktien_anchors)} 'Aktien' table anchor links (tables to process).")
+    aktien_anchors = aktien_anchors[:MAX_TABLES]
+    for idx, (anchor, anchor_text, anchor_href) in enumerate(aktien_anchors):
         if processed_tables >= max_tables:
             break
         logging.info(f"\nJumping to table {idx+1}: {anchor_text} ({anchor_href})")
@@ -243,15 +239,18 @@ def parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES):
         except Exception as e:
             logging.warning(f"Timeout waiting for table '{anchor_text}' to load: {e}")
             continue
-        # Parse the table(s) now visible
-        table_rows = parse_tables(driver)
-        # Only add new tables (avoid duplicates if anchors point to same table)
-        new_rows = [row for row in table_rows if row.get('table_name') != last_table_name]
-        if new_rows:
-            last_table_name = new_rows[0].get('table_name')
-            etf_rows.extend(new_rows)
+        # Parse only the current table that was navigated to
+        table_rows = parse_tables(driver, expected_table_name=anchor_text)
+        if table_rows:
+            etf_rows.extend(table_rows)
             processed_tables += 1
+            logging.info(f"Added {len(table_rows)} ETFs from {anchor_text}")
+            # Log Dividendenrendite values for each ETF
+            for etf in table_rows:
+                div_rendite = etf.get('dividendenrendite', '')
+                logging.info(f"ETF '{etf['name']}': Dividendenrendite = {div_rendite}")
     logging.info(f"Total tables processed: {processed_tables}")
+    logging.info(f"Total ETFs found: {len(etf_rows)}")
     return etf_rows
 
 def scrape_etf_links():
@@ -333,11 +332,14 @@ def scrape_etf_links():
                             logging.info(f"ETF {idx}: Dividendenrendite found: {div_rendite}")
                         else:
                             etf['dividendenrendite'] = ''
+                            logging.info(f"ETF {idx}: No Dividendenrendite found in PDF")
                         os.remove(pdf_path)
                     else:
                         etf['dividendenrendite'] = ''
+                        logging.info(f"ETF {idx}: Could not download PDF")
                 else:
                     etf['dividendenrendite'] = ''
+                    logging.info(f"ETF {idx}: No factsheet link found")
             except TimeoutException:
                 logging.error("Could not find the 'Factsheet (DE)' link on the ETF profile page using specific XPath.")
                 etf['dividendenrendite'] = ''
@@ -345,9 +347,13 @@ def scrape_etf_links():
                 logging.error(f"An error occurred while trying to find/navigate to the Factsheet link: {e}")
                 etf['dividendenrendite'] = ''
 
-        # Step 3: Save all ETF data to a .txt file
-    #     save_etf_data_to_txt(etf_rows, 'etf_ausschuettend.txt')
-    #     print(f"Saved {len(etf_rows)} Ausschütt ETF entries to etf_ausschuettend.txt")
+        # Log final Dividendenrendite values before database insertion
+        logging.info("\nFinal Dividendenrendite values for all ETFs:")
+        for etf in etf_rows:
+            logging.info(f"ETF '{etf['name']}': Dividendenrendite = {etf.get('dividendenrendite', '')}")
+
+        # Step 3: Insert all ETF data into database
+        insert_etf_entries(etf_rows, SUPABASE_URL)
 
     except WebDriverException as e:
         logging.error(f"Selenium WebDriver error: {e}")
@@ -359,8 +365,6 @@ def scrape_etf_links():
         if driver:
             logging.info("Closing WebDriver.")
             driver.quit()
-
-    insert_etf_entries(etf_rows, SUPABASE_URL)
 
 if __name__ == "__main__":
     scrape_etf_links()

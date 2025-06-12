@@ -46,7 +46,8 @@ def create_table_if_not_exists(engine):
 
 def insert_etf_entries(etf_entries, db_url):
     """
-    Inserts a list of ETF dicts into the database, skipping duplicates by ISIN.
+    Inserts or updates a list of ETF dicts into the database.
+    If an ETF with the same ISIN exists, it will be updated with the new data.
     Args:
         etf_entries (list of dict): List of ETF data dicts.
         db_url (str): SQLAlchemy database URL.
@@ -56,13 +57,15 @@ def insert_etf_entries(etf_entries, db_url):
     engine, Session = get_engine_and_session(db_url)
     create_table_if_not_exists(engine)
     session = Session()
+    
+    updated_count = 0
+    inserted_count = 0
+    
     for etf in etf_entries:
         if not etf.get('isin'):
             continue
-        # Check for duplicate by ISIN
-        exists = session.query(EtfAusschuettend).filter_by(isin=etf['isin']).first()
-        if exists:
-            continue
+            
+        # Create new entry
         entry = EtfAusschuettend(
             name=etf.get('name', ''),
             ter=etf.get('ter', ''),
@@ -74,10 +77,22 @@ def insert_etf_entries(etf_entries, db_url):
             isin=etf.get('isin', ''),
             dividendenrendite=etf.get('dividendenrendite', ''),
         )
-        session.add(entry)
+        
+        # Check if entry exists
+        existing = session.query(EtfAusschuettend).filter_by(isin=etf['isin']).first()
+        if existing:
+            # Update existing entry
+            for key, value in etf.items():
+                setattr(existing, key, value)
+            updated_count += 1
+        else:
+            # Insert new entry
+            session.add(entry)
+            inserted_count += 1
+    
     session.commit()
     session.close()
-    print(f"Inserted {len(etf_entries)} ETF entries (duplicates skipped) into Supabase.")
+    print(f"Database update complete: {updated_count} entries updated, {inserted_count} new entries inserted.")
 
 # Example usage:
 # from scraper import parse_first_three_tables, scrape_etf_links, etc.
