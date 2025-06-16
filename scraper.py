@@ -31,10 +31,19 @@ logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler]
 
 URL = "https://www.justetf.com/de/etf-list-overview.html#aktien_digitalisierung"
 BASE_URL = "https://www.justetf.com"
-PAGE_LOAD_TIMEOUT = 30
-ELEMENT_WAIT_TIMEOUT = 20
+PAGE_LOAD_TIMEOUT = random.randint(30, 900)  # Randomized each run
+ELEMENT_WAIT_TIMEOUT = random.randint(30, 900)
+# Log chosen dynamic timeouts
+logging.info(f"PAGE_LOAD_TIMEOUT set to {PAGE_LOAD_TIMEOUT}s, ELEMENT_WAIT_TIMEOUT set to {ELEMENT_WAIT_TIMEOUT}s")
 COOKIE_BUTTON_TEXT = "Auswahl erlauben"
-MAX_TABLES = 2  # Maximum number of tables to process
+MAX_TABLES = 5  # Maximum number of tables to process
+MIN_TABLE = 1  # 1-based index of the first table to process
+
+
+# Helper to provide a random timeout between 30 and 300 s
+def get_random_timeout() -> int:
+    """Return a random timeout between 30 and 300 seconds (inclusive)."""
+    return random.randint(30, 300)
 
 def setup_driver():
     """
@@ -63,18 +72,19 @@ def setup_driver():
         return None
 
 
-def parse_tables(driver, expected_table_name=None):
+def parse_tables(driver, expected_table_name=None, timeout=ELEMENT_WAIT_TIMEOUT):
     """
     Parses the current table that was navigated to via anchor click.
     Args:
         driver (webdriver.Chrome): The Selenium WebDriver instance.
         expected_table_name (str): The name of the table we expect to find (from the anchor text).
+        timeout (int): The timeout for WebDriverWait.
     Returns:
         list of dict: Each dict contains ETF data for a row (columns 1-8, keys: 'name', 'ter', 'ytd', 'fondsgröße', 'auflagedatum', 'ausschüttung', 'replikation', 'isin', 'row', 'profile_url').
     """
     # Wait for table to be visible
     try:
-        WebDriverWait(driver, ELEMENT_WAIT_TIMEOUT).until(
+        WebDriverWait(driver, timeout).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "table.table.table-striped.dataTable.no-footer"))
         )
     except TimeoutException:
@@ -201,7 +211,7 @@ def scroll_to_load_all_tables(driver):
     logging.info(f"After scrolling, found {tables_count} tables on the page")
 
 
-def parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES):
+def parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES, min_table=MIN_TABLE):
     """
     Iterates over all 'Aktien' table anchor links from JustETF website, clicks each anchor,
     waits for the table to load, and parses only the current table that was navigated to.
@@ -210,6 +220,7 @@ def parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES):
     Args:
         driver (webdriver.Chrome): The Selenium WebDriver instance.
         max_tables (int): Maximum number of tables to process. Defaults to MAX_TABLES.
+        min_table (int): 1-based index of the first table to start processing. Defaults to MIN_TABLE.
     
     Returns:
         list of dict: Aggregated list of ETF data dictionaries from all processed tables.
@@ -219,12 +230,15 @@ def parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES):
     anchors = driver.find_elements(By.CSS_SELECTOR, 'a[href*="aktien"]' and 'a[class="light-link"]')
     processed_tables = 0
     aktien_anchors = [(a, a.text.strip(), a.get_attribute('href')) for a in anchors if "aktien" in a.get_attribute('href').lower()]
-    logging.info(f"Found {len(aktien_anchors)} 'Aktien' table anchor links (tables to process).")
-    aktien_anchors = aktien_anchors[:MAX_TABLES]
-    for idx, (anchor, anchor_text, anchor_href) in enumerate(aktien_anchors):
+    logging.info(f"Found {len(aktien_anchors)} 'Aktien' table anchor links (tables to process). Starting at table {min_table}.")
+    # Skip tables before the requested starting index
+    if min_table > 1:
+        aktien_anchors = aktien_anchors[min_table - 1:]
+
+    for idx, (anchor, anchor_text, anchor_href) in enumerate(aktien_anchors, start=min_table):
         if processed_tables >= max_tables:
             break
-        logging.info(f"\nJumping to table {idx+1}: {anchor_text} ({anchor_href})")
+        logging.info(f"\nJumping to table {idx}: {anchor_text} ({anchor_href})")
         try:
             driver.execute_script("arguments[0].click();", anchor)
         except Exception as e:
@@ -232,7 +246,15 @@ def parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES):
             continue
         # Wait for the table to load (wait for h3 header to change or table to appear)
         try:
-            WebDriverWait(driver, ELEMENT_WAIT_TIMEOUT).until(
+            # Generate fresh random timeouts for this table
+            page_timeout = get_random_timeout()
+            wait_timeout = get_random_timeout()
+            driver.set_page_load_timeout(page_timeout)
+            logging.info(
+                f"Dynamic timeouts for table {idx}: PAGE_LOAD_TIMEOUT={page_timeout}s, "
+                f"ELEMENT_WAIT_TIMEOUT={wait_timeout}s"
+            )
+            WebDriverWait(driver, wait_timeout).until(
                 lambda d: anchor_text in d.page_source
             )
             time.sleep(1.5)  # Give extra time for table to render
@@ -240,7 +262,7 @@ def parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES):
             logging.warning(f"Timeout waiting for table '{anchor_text}' to load: {e}")
             continue
         # Parse only the current table that was navigated to
-        table_rows = parse_tables(driver, expected_table_name=anchor_text)
+        table_rows = parse_tables(driver, expected_table_name=anchor_text, timeout=wait_timeout)
         if table_rows:
             etf_rows.extend(table_rows)
             processed_tables += 1
@@ -287,7 +309,7 @@ def scrape_etf_links():
         time.sleep(5)
         
         # Instead of scrolling, iterate over all table anchors and parse each table
-        etf_rows = parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES)
+        etf_rows = parse_all_tables_by_anchors(driver, max_tables=MAX_TABLES, min_table=MIN_TABLE)
         if not etf_rows:
             print("No Ausschütt ETFs found in tables.")
             return
@@ -314,7 +336,8 @@ def scrape_etf_links():
             factsheet_link_xpath = "//a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]"
             logging.info(f"Looking for Factsheet link with XPath: {factsheet_link_xpath}")
             try:
-                factsheet_anchor = WebDriverWait(driver, ELEMENT_WAIT_TIMEOUT).until(
+                # Look for the factsheet link but give up quickly (5 s) to keep the crawl moving.
+                factsheet_anchor = WebDriverWait(driver, 5).until(
                     EC.presence_of_element_located((By.XPATH, factsheet_link_xpath))
                 )
                 factsheet_href = factsheet_anchor.get_attribute('href')
@@ -341,7 +364,7 @@ def scrape_etf_links():
                     etf['dividendenrendite'] = ''
                     logging.info(f"ETF {idx}: No factsheet link found")
             except TimeoutException:
-                logging.error("Could not find the 'Factsheet (DE)' link on the ETF profile page using specific XPath.")
+                logging.info("No 'Factsheet (DE)' link found within 5 s on this ETF profile; skipping factsheet download.")
                 etf['dividendenrendite'] = ''
             except Exception as e:
                 logging.error(f"An error occurred while trying to find/navigate to the Factsheet link: {e}")
