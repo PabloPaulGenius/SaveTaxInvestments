@@ -1,45 +1,617 @@
-2025-05-12 13:46:37,595 - INFO - ====== WebDriver manager ======
-2025-05-12 13:46:37,751 - INFO - Get LATEST chromedriver version for google-chrome
-2025-05-12 13:46:37,830 - INFO - Get LATEST chromedriver version for google-chrome
-2025-05-12 13:46:37,906 - INFO - Driver [/Users/paul/.wdm/drivers/chromedriver/mac64/136.0.7103.92/chromedriver-mac-arm64/chromedriver] found in cache
-2025-05-12 13:46:39,001 - INFO - WebDriver setup complete.
-2025-05-12 13:46:39,001 - INFO - Fetching data from https://www.justetf.com/de/etf-list-overview.html#aktien_digitalisierung...
-2025-05-12 13:46:41,898 - INFO - Waiting for cookie consent button: 'Auswahl erlauben'...
-2025-05-12 13:46:41,914 - INFO - Cookie button found. Clicking...
-2025-05-12 13:46:41,981 - INFO - Clicked cookie button. Pausing for page to settle...
-2025-05-12 13:46:44,986 - INFO - Waiting for page content to stabilize after navigation/cookie handling...
-2025-05-12 13:46:50,787 - INFO - Found 230 table anchor links.
-2025-05-12 13:46:50,787 - INFO - 
+2025-06-13 22:32:28,252 - INFO - PAGE_LOAD_TIMEOUT set to 495s, ELEMENT_WAIT_TIMEOUT set to 880s
+2025-06-13 22:32:28,252 - INFO - ====== WebDriver manager ======
+2025-06-13 22:32:28,412 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-13 22:32:28,546 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-13 22:32:28,624 - INFO - Driver [/Users/paul/.wdm/drivers/chromedriver/mac64/137.0.7151.70/chromedriver-mac-arm64/chromedriver] found in cache
+2025-06-13 22:32:29,559 - INFO - WebDriver setup complete.
+2025-06-13 22:32:29,559 - INFO - Fetching data from https://www.justetf.com/de/etf-list-overview.html#aktien_digitalisierung...
+2025-06-13 22:32:32,162 - INFO - Waiting for cookie consent button: 'Auswahl erlauben'...
+2025-06-13 22:32:32,199 - INFO - Cookie button found. Clicking...
+2025-06-13 22:32:32,235 - INFO - Clicked cookie button. Pausing for page to settle...
+2025-06-13 22:32:35,240 - INFO - Waiting for page content to stabilize after navigation/cookie handling...
+2025-06-13 22:32:41,030 - INFO - Found 143 'Aktien' table anchor links (tables to process). Starting at table 1.
+2025-06-13 22:32:41,030 - INFO - 
 Jumping to table 1: Afrika (https://www.justetf.com/de/etf-list-overview.html#aktien_afrika)
-2025-05-12 13:46:52,757 - INFO - Found 6 total tables on the page
-2025-05-12 13:46:52,757 - INFO - Limiting processing to first 1 tables
-2025-05-12 13:46:52,758 - INFO - 
-Processing Aktien Afrika (Table 1 of 1)...
-2025-05-12 13:46:52,758 - INFO - Aktien Afrika: 2 rows, 0 Ausschütt matches.
-2025-05-12 13:46:52,758 - INFO - 
+2025-06-13 22:32:41,037 - INFO - Dynamic timeouts for table 1: PAGE_LOAD_TIMEOUT=228s, ELEMENT_WAIT_TIMEOUT=125s
+2025-06-13 22:32:42,965 - INFO - 
+Processing Aktien Afrika...
+2025-06-13 22:32:42,965 - INFO - Aktien Afrika: 2 rows, 0 Ausschütt matches.
+2025-06-13 22:32:42,965 - INFO - 
 Jumping to table 2: Asien-Pazifik (https://www.justetf.com/de/etf-list-overview.html#aktien_asien-pazifik)
-2025-05-12 13:46:54,705 - INFO - Found 6 total tables on the page
-2025-05-12 13:46:54,705 - INFO - Limiting processing to first 1 tables
-2025-05-12 13:46:54,705 - INFO - 
-Processing Aktien Afrika (Table 1 of 1)...
-2025-05-12 13:46:54,705 - INFO - Aktien Afrika: 2 rows, 0 Ausschütt matches.
-2025-05-12 13:46:54,705 - INFO - 
+2025-06-13 22:32:42,972 - INFO - Dynamic timeouts for table 2: PAGE_LOAD_TIMEOUT=46s, ELEMENT_WAIT_TIMEOUT=300s
+2025-06-13 22:32:44,905 - INFO - 
+Processing Aktien Asien-Pazifik...
+2025-06-13 22:32:44,905 - INFO - Aktien Asien-Pazifik: 21 rows, 7 Ausschütt matches.
+2025-06-13 22:32:44,905 - INFO - Added 7 ETFs from Asien-Pazifik
+2025-06-13 22:32:44,905 - INFO - ETF 'Amundi MSCI Pacific Ex Japan UCITS ETF Dist': Dividendenrendite = 
+2025-06-13 22:32:44,905 - INFO - ETF 'HSBC MSCI AC Far East ex Japan UCITS ETF USD (Dist)': Dividendenrendite = 
+2025-06-13 22:32:44,905 - INFO - ETF 'HSBC MSCI Pacific ex Japan UCITS ETF USD': Dividendenrendite = 
+2025-06-13 22:32:44,905 - INFO - ETF 'iShares MSCI AC Far East ex-Japan UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:44,905 - INFO - ETF 'iShares MSCI Pacific ex-Japan UCITS ETF (Dist)': Dividendenrendite = 
+2025-06-13 22:32:44,905 - INFO - ETF 'UBS MSCI Pacific ex Japan UCITS ETF USD dis': Dividendenrendite = 
+2025-06-13 22:32:44,905 - INFO - ETF 'Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF Distributing': Dividendenrendite = 
+2025-06-13 22:32:44,905 - INFO - 
 Jumping to table 3: Emerging Markets (https://www.justetf.com/de/etf-list-overview.html#aktien_emerging_markets)
-2025-05-12 13:46:56,677 - INFO - Found 7 total tables on the page
-2025-05-12 13:46:56,677 - INFO - Limiting processing to first 1 tables
-2025-05-12 13:46:56,677 - INFO - 
-Processing Aktien Afrika (Table 1 of 1)...
-2025-05-12 13:46:56,677 - INFO - Aktien Afrika: 2 rows, 0 Ausschütt matches.
-2025-05-12 13:46:56,677 - INFO - 
+2025-06-13 22:32:44,913 - INFO - Dynamic timeouts for table 3: PAGE_LOAD_TIMEOUT=149s, ELEMENT_WAIT_TIMEOUT=265s
+2025-06-13 22:32:46,844 - INFO - 
+Processing Aktien Emerging Markets...
+2025-06-13 22:32:46,845 - INFO - Aktien Emerging Markets: 38 rows, 12 Ausschütt matches.
+2025-06-13 22:32:46,845 - INFO - Added 12 ETFs from Emerging Markets
+2025-06-13 22:32:46,845 - INFO - ETF 'Amundi Index MSCI Emerging Markets UCITS ETF DR (D)': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'Amundi Index MSCI Emerging Markets UCITS ETF DR - USD (D)': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'Amundi MSCI Emerging Markets II UCITS ETF Dist': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'HSBC MSCI Emerging Markets UCITS ETF USD': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'iShares BIC 50 UCITS ETF USD (Dist)': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'iShares Core MSCI Emerging Markets IMI UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'iShares MSCI EM ex-China UCITS ETF USD (Dist)': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'iShares MSCI EM UCITS ETF (Dist)': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'UBS Core MSCI EM UCITS ETF USD dis': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'Vanguard FTSE Emerging Markets UCITS ETF Distributing': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'Xtrackers MSCI Emerging Markets Swap UCITS ETF 1D': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - ETF 'Xtrackers MSCI Emerging Markets UCITS ETF 1D': Dividendenrendite = 
+2025-06-13 22:32:46,845 - INFO - 
 Jumping to table 4: Europa (https://www.justetf.com/de/etf-list-overview.html#aktien_europa)
-2025-05-12 13:46:58,700 - INFO - Found 8 total tables on the page
-2025-05-12 13:46:58,700 - INFO - Limiting processing to first 1 tables
-2025-05-12 13:46:58,701 - INFO - 
-Processing Aktien Afrika (Table 1 of 1)...
-2025-05-12 13:46:58,701 - INFO - Aktien Afrika: 2 rows, 0 Ausschütt matches.
-2025-05-12 13:46:58,701 - INFO - 
+2025-06-13 22:32:46,855 - INFO - Dynamic timeouts for table 4: PAGE_LOAD_TIMEOUT=229s, ELEMENT_WAIT_TIMEOUT=124s
+2025-06-13 22:32:48,825 - INFO - 
+Processing Aktien Europa...
+2025-06-13 22:32:48,827 - INFO - Aktien Europa: 86 rows, 36 Ausschütt matches.
+2025-06-13 22:32:48,827 - INFO - Added 36 ETFs from Europa
+2025-06-13 22:32:48,827 - INFO - ETF 'Amundi EURO STOXX 50 UCITS ETF DR - EUR (D)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Amundi Index MSCI Europe UCITS ETF DR EUR (D)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Amundi MSCI EMU UCITS ETF Dist': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Amundi Prime Europe UCITS ETF DR (D)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Amundi Prime Eurozone UCITS ETF DR (D)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Amundi Stoxx Europe 600 UCITS ETF - EUR Hedged Dist': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'BNP Paribas Easy EURO STOXX 50 UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'BNP Paribas Easy STOXX Europe 600 UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Deka EURO STOXX 50 UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Deka MSCI Europe UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Deka STOXX Europe 50® UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'HSBC EURO STOXX 50 UCITS ETF EUR': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'HSBC MSCI Europe UCITS ETF EUR': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Invesco EURO STOXX 50 UCITS ETF Dist': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'iShares Core EURO STOXX 50 UCITS ETF EUR (Dist)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'iShares Core MSCI EMU UCITS ETF EUR (Dist)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'iShares Core MSCI Europe UCITS ETF EUR (Dist)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'iShares EURO STOXX 50 UCITS ETF (DE)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'iShares EURO STOXX UCITS ETF (DE)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'iShares MSCI Europe ex-UK UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'iShares STOXX Europe 50 UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'iShares STOXX Europe 50 UCITS ETF (DE)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'iShares STOXX Europe 600 UCITS ETF (DE)': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'UBS Core MSCI EMU UCITS ETF EUR dis': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'UBS Core MSCI EMU UCITS ETF hGBP dis': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'UBS Core MSCI EMU UCITS ETF hUSD dis': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'UBS Core MSCI Europe UCITS ETF EUR dis': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'UBS EURO STOXX 50 UCITS ETF EUR dis': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Vanguard FTSE Developed Europe ex UK UCITS ETF (EUR) Distributing': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Vanguard FTSE Developed Europe UCITS ETF Distributing': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Xtrackers EURO STOXX 50 UCITS ETF 1D': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Xtrackers MSCI EMU UCITS ETF 1D': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Xtrackers MSCI Europe UCITS ETF 1D': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Xtrackers MSCI Nordic UCITS ETF 1D': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Xtrackers S&P Europe ex UK UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - ETF 'Xtrackers Stoxx Europe 600 UCITS ETF 1D': Dividendenrendite = 
+2025-06-13 22:32:48,827 - INFO - 
 Jumping to table 5: Lateinamerika (https://www.justetf.com/de/etf-list-overview.html#aktien_lateinamerika)
-2025-05-12 13:46:59,321 - INFO - Closing WebDriver.
-2025-05-12 13:46:59,325 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(54, 'Connection reset by peer')': /session/d23262531da6672c0e6a49c881757a2e
-2025-05-12 13:46:59,328 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105563850>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/d23262531da6672c0e6a49c881757a2e
-2025-05-12 13:46:59,331 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105563790>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/d23262531da6672c0e6a49c881757a2e
+2025-06-13 22:32:48,835 - INFO - Dynamic timeouts for table 5: PAGE_LOAD_TIMEOUT=121s, ELEMENT_WAIT_TIMEOUT=192s
+2025-06-13 22:32:50,789 - INFO - 
+Processing Aktien Lateinamerika...
+2025-06-13 22:32:50,789 - INFO - Aktien Lateinamerika: 3 rows, 1 Ausschütt matches.
+2025-06-13 22:32:50,789 - INFO - Added 1 ETFs from Lateinamerika
+2025-06-13 22:32:50,789 - INFO - ETF 'iShares MSCI EM Latin America UCITS ETF (Dist)': Dividendenrendite = 
+2025-06-13 22:32:50,789 - INFO - 
+Jumping to table 6: Nordamerika (https://www.justetf.com/de/etf-list-overview.html#aktien_nordamerika)
+2025-06-13 22:32:50,797 - INFO - Dynamic timeouts for table 6: PAGE_LOAD_TIMEOUT=63s, ELEMENT_WAIT_TIMEOUT=90s
+2025-06-13 22:32:52,787 - INFO - 
+Processing Aktien Nordamerika...
+2025-06-13 22:32:52,788 - INFO - Aktien Nordamerika: 3 rows, 2 Ausschütt matches.
+2025-06-13 22:32:52,788 - INFO - Added 2 ETFs from Nordamerika
+2025-06-13 22:32:52,788 - INFO - ETF 'iShares MSCI North America UCITS ETF': Dividendenrendite = 
+2025-06-13 22:32:52,788 - INFO - ETF 'Vanguard FTSE North America UCITS ETF Distributing': Dividendenrendite = 
+2025-06-13 22:32:52,788 - INFO - Total tables processed: 5
+2025-06-13 22:32:52,788 - INFO - Total ETFs found: 58
+2025-06-13 22:32:52,788 - INFO - 
+Processing ETF 1: Amundi MSCI Pacific Ex Japan UCITS ETF Dist (https://www.justetf.com/de/etf-profile.html?isin=LU1220245556)
+2025-06-13 22:32:53,343 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:32:53,348 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:32:53,348 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:32:53,354 - INFO - Found Factsheet link: https://api.fundinfo.com/document/dcd9790346382164a537a8e485491df0_425626/MR_DE_de_LU1220245556_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:32:53,570 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:53,570 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:53,571 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:53,571 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:54,461 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:54,461 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:54,462 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:54,462 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:54,463 - INFO - ETF 1: Dividendenrendite found: no DivRendite found
+2025-06-13 22:32:54,463 - INFO - 
+Processing ETF 2: HSBC MSCI AC Far East ex Japan UCITS ETF USD (Dist) (https://www.justetf.com/de/etf-profile.html?isin=IE00022VXYM7)
+2025-06-13 22:32:55,092 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:32:55,094 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:32:55,094 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:32:55,100 - INFO - Found Factsheet link: https://api.fundinfo.com/document/6344383af6ec2dc8168baaeb8cfd9725_409349/MR_DE_de_IE00022VXYM7_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:32:55,242 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:55,243 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:55,243 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:55,243 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:55,691 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:55,691 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:55,691 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:55,692 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:55,692 - INFO - ETF 2: Dividendenrendite found: 1,81%
+2025-06-13 22:32:55,692 - INFO - 
+Processing ETF 3: HSBC MSCI Pacific ex Japan UCITS ETF USD (https://www.justetf.com/de/etf-profile.html?isin=IE00B5SG8Z57)
+2025-06-13 22:32:56,128 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:32:56,134 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:32:56,135 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:32:56,140 - INFO - Found Factsheet link: https://api.fundinfo.com/document/28edd81d85f02d4893e3d718708751df_424247/MR_DE_de_IE00B5SG8Z57_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:32:56,313 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:56,314 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:56,314 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:56,315 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:56,822 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:56,822 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:56,822 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:56,822 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:56,822 - INFO - ETF 3: Dividendenrendite found: 3,76%
+2025-06-13 22:32:56,822 - INFO - 
+Processing ETF 4: iShares MSCI AC Far East ex-Japan UCITS ETF (https://www.justetf.com/de/etf-profile.html?isin=IE00B0M63730)
+2025-06-13 22:32:57,333 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:32:57,337 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:32:57,337 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:32:57,342 - INFO - Found Factsheet link: https://api.fundinfo.com/document/354ac4055c25bb3bc0fef7fd5d70aaad_412391/MR_DE_de_IE00B0M63730_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:32:57,524 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:57,524 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:57,525 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:57,525 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:57,526 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:32:57,526 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:00,538 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:00,538 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:00,538 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:00,538 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:00,538 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:00,538 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:00,539 - INFO - ETF 4: Dividendenrendite found: 1,73%
+2025-06-13 22:33:00,539 - INFO - 
+Processing ETF 5: iShares MSCI Pacific ex-Japan UCITS ETF (Dist) (https://www.justetf.com/de/etf-profile.html?isin=IE00B4WXJD03)
+2025-06-13 22:33:00,976 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:00,980 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:00,980 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:00,985 - INFO - Found Factsheet link: https://api.fundinfo.com/document/b569c662cc8994b56cda30432aa25014_383298/MR_DE_de_IE00B4WXJD03_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:33:01,124 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:01,124 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:01,125 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:01,125 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:01,125 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:01,126 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:03,728 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:03,728 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:03,728 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:03,728 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:03,728 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:03,728 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:03,729 - INFO - ETF 5: Dividendenrendite found: 3,06%
+2025-06-13 22:33:03,729 - INFO - 
+Processing ETF 6: UBS MSCI Pacific ex Japan UCITS ETF USD dis (https://www.justetf.com/de/etf-profile.html?isin=LU0446734526)
+2025-06-13 22:33:04,251 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:04,255 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:04,255 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:04,262 - INFO - Found Factsheet link: https://api.fundinfo.com/document/5008fcbe650c5312a535b76bb999f511_154901/MR_DE_de_LU0446734526_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:33:04,972 - INFO - ETF 6: Dividendenrendite found: 3.62%
+2025-06-13 22:33:04,972 - INFO - 
+Processing ETF 7: Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF Distributing (https://www.justetf.com/de/etf-profile.html?isin=IE00B9F5YL18)
+2025-06-13 22:33:05,780 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:05,786 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:05,786 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:05,791 - INFO - Found Factsheet link: https://api.fundinfo.com/document/be6a02a4bf3544907988fc6c8d046020_356719/MR_DE_de_IE00B9F5YL18_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:05,968 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:05,968 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:05,968 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:05,969 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:06,290 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:06,290 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:06,290 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:06,290 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:06,291 - INFO - ETF 7: Dividendenrendite found: 3,5%
+2025-06-13 22:33:06,291 - INFO - 
+Processing ETF 8: Amundi Index MSCI Emerging Markets UCITS ETF DR (D) (https://www.justetf.com/de/etf-profile.html?isin=LU1737652583)
+2025-06-13 22:33:06,905 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:06,908 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:06,908 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:06,918 - INFO - Found Factsheet link: https://api.fundinfo.com/document/ee0a1e75f21a179b1de75e4edf4d3e28_364524/MR_DE_de_LU1737652583_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:07,073 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:07,074 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:07,074 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:07,695 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:07,695 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:07,695 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:07,696 - INFO - ETF 8: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:07,696 - INFO - 
+Processing ETF 9: Amundi Index MSCI Emerging Markets UCITS ETF DR - USD (D) (https://www.justetf.com/de/etf-profile.html?isin=LU2277591868)
+2025-06-13 22:33:08,203 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:08,206 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:08,206 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:08,214 - INFO - Found Factsheet link: https://api.fundinfo.com/document/81c67337d08d2b503be7674cceedb17f_2345111/MR_DE_de_LU2277591868_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:08,773 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:08,774 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:08,775 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:08,776 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:09,601 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:09,601 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:09,601 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:09,601 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:09,601 - INFO - ETF 9: Dividendenrendite found: 8,74%
+2025-06-13 22:33:09,602 - INFO - 
+Processing ETF 10: Amundi MSCI Emerging Markets II UCITS ETF Dist (https://www.justetf.com/de/etf-profile.html?isin=LU2573966905)
+2025-06-13 22:33:09,941 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:09,944 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:09,944 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:09,952 - INFO - Found Factsheet link: https://api.fundinfo.com/document/a6a5b9dfcd311f5f3040d11aaaf7129f_417527/MR_DE_de_LU2573966905_RES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:33:10,137 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:10,138 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:10,138 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:10,139 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:11,047 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:11,047 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:11,047 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:11,047 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:11,048 - INFO - ETF 10: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:11,048 - INFO - 
+Processing ETF 11: HSBC MSCI Emerging Markets UCITS ETF USD (https://www.justetf.com/de/etf-profile.html?isin=IE00B5SSQT16)
+2025-06-13 22:33:11,522 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:11,527 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:11,527 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:11,532 - INFO - Found Factsheet link: https://api.fundinfo.com/document/7ed79337bf1c1569edbeb773748b637e_425657/MR_DE_de_IE00B5SSQT16_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:11,712 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:11,713 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:11,713 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:11,714 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:12,210 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:12,210 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:12,210 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:12,210 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:12,210 - INFO - ETF 11: Dividendenrendite found: 1,94%
+2025-06-13 22:33:12,210 - INFO - 
+Processing ETF 12: iShares BIC 50 UCITS ETF USD (Dist) (https://www.justetf.com/de/etf-profile.html?isin=IE00B1W57M07)
+2025-06-13 22:33:12,790 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:12,795 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:12,795 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:12,801 - INFO - Found Factsheet link: https://api.fundinfo.com/document/5fc2b1cd1391168ccab933d7ef116d71_393523/MR_DE_de_IE00B1W57M07_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:33:13,176 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:13,177 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:13,178 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:13,179 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:13,179 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:13,180 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,025 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,025 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,025 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,025 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,025 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,025 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,026 - INFO - ETF 12: Dividendenrendite found: 2,66%
+2025-06-13 22:33:16,026 - INFO - 
+Processing ETF 13: iShares Core MSCI Emerging Markets IMI UCITS ETF (https://www.justetf.com/de/etf-profile.html?isin=IE00BD45KH83)
+2025-06-13 22:33:16,598 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:16,603 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:16,603 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:16,609 - INFO - Found Factsheet link: https://api.fundinfo.com/document/c9636316584779077d31a2eaf9ad3845_306877/MR_DE_de_IE00BD45KH83_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:33:16,807 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,808 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,808 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,809 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,809 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:16,810 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:18,371 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:18,371 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:18,371 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:18,371 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:18,371 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:18,371 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:18,372 - INFO - ETF 13: Dividendenrendite found: 2,25%
+2025-06-13 22:33:18,372 - INFO - 
+Processing ETF 14: iShares MSCI EM ex-China UCITS ETF USD (Dist) (https://www.justetf.com/de/etf-profile.html?isin=IE000W8RYVC0)
+2025-06-13 22:33:18,817 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:18,820 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:18,820 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:18,825 - INFO - Found Factsheet link: https://api.fundinfo.com/document/fd59fe6899f330060ac6ac722491b2a9_194040/MR_DE_de_IE000W8RYVC0_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:33:19,143 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,143 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,144 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,144 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,145 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,145 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,888 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,888 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,888 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,888 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,888 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,889 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:19,889 - INFO - ETF 14: Dividendenrendite found: 1,06%
+2025-06-13 22:33:19,889 - INFO - 
+Processing ETF 15: iShares MSCI EM UCITS ETF (Dist) (https://www.justetf.com/de/etf-profile.html?isin=IE00B0M63177)
+2025-06-13 22:33:20,358 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:20,362 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:20,362 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:20,371 - INFO - Found Factsheet link: https://api.fundinfo.com/document/46483ac52ecb968a6f162ea724d4f738_410988/MR_DE_de_IE00B0M63177_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:33:20,544 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:20,545 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:20,545 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:20,546 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:20,546 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:20,546 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:23,591 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:23,591 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:23,591 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:23,591 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:23,591 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:23,591 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:23,592 - INFO - ETF 15: Dividendenrendite found: 2,16%
+2025-06-13 22:33:23,592 - INFO - 
+Processing ETF 16: UBS Core MSCI EM UCITS ETF USD dis (https://www.justetf.com/de/etf-profile.html?isin=LU0480132876)
+2025-06-13 22:33:24,008 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:24,015 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:24,015 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:24,020 - INFO - Found Factsheet link: https://api.fundinfo.com/document/762f99fb93ac564d274741b58069ed6c_163439/MR_DE_de_LU0480132876_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:33:24,898 - INFO - ETF 16: Dividendenrendite found: 2.65%
+2025-06-13 22:33:24,899 - INFO - 
+Processing ETF 17: Vanguard FTSE Emerging Markets UCITS ETF Distributing (https://www.justetf.com/de/etf-profile.html?isin=IE00B3VVMM84)
+2025-06-13 22:33:25,383 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:25,385 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:25,385 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:25,391 - INFO - Found Factsheet link: https://api.fundinfo.com/document/88a54a0ecc7370c2d0573465b9c43afc_357317/MR_DE_de_IE00B3VVMM84_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:25,536 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:25,536 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:25,536 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:25,537 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:25,867 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:25,868 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:25,868 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:25,868 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:25,868 - INFO - ETF 17: Dividendenrendite found: 2,7%
+2025-06-13 22:33:25,868 - INFO - 
+Processing ETF 18: Xtrackers MSCI Emerging Markets Swap UCITS ETF 1D (https://www.justetf.com/de/etf-profile.html?isin=LU2675291913)
+2025-06-13 22:33:26,355 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:26,359 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:26,359 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:26,365 - INFO - Found Factsheet link: https://api.fundinfo.com/document/21da1b8f732a335f6d97f34ff0cb14d3_329986/MR_DE_de_LU2675291913_YES_2025-06-04.pdf. Downloading PDF...
+2025-06-13 22:33:26,835 - INFO - ETF 18: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:26,835 - INFO - 
+Processing ETF 19: Xtrackers MSCI Emerging Markets UCITS ETF 1D (https://www.justetf.com/de/etf-profile.html?isin=IE000GWA2J58)
+2025-06-13 22:33:27,297 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:27,299 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:27,299 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:27,306 - INFO - Found Factsheet link: https://api.fundinfo.com/document/f30aff9c0864619718496521a4ac7c7f_330201/MR_DE_de_IE000GWA2J58_YES_2025-06-04.pdf. Downloading PDF...
+2025-06-13 22:33:27,710 - INFO - ETF 19: Dividendenrendite found: 124%
+2025-06-13 22:33:27,710 - INFO - 
+Processing ETF 20: Amundi EURO STOXX 50 UCITS ETF DR - EUR (D) (https://www.justetf.com/de/etf-profile.html?isin=LU1681047319)
+2025-06-13 22:33:28,222 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:28,231 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:28,231 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:28,236 - INFO - Found Factsheet link: https://api.fundinfo.com/document/1f2e11af9b3f647706d35d696c549f7a_339858/MR_DE_de_LU1681047319_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:28,394 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:28,395 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:28,395 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:28,947 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:28,947 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:28,947 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:28,947 - INFO - ETF 20: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:28,948 - INFO - 
+Processing ETF 21: Amundi Index MSCI Europe UCITS ETF DR EUR (D) (https://www.justetf.com/de/etf-profile.html?isin=LU1737652310)
+2025-06-13 22:33:29,473 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:29,481 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:29,481 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:29,485 - INFO - Found Factsheet link: https://api.fundinfo.com/document/afb21fd2a25a1360236d0ae9d66c27a4_372433/MR_DE_de_LU1737652310_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:29,630 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:29,630 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:29,631 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:30,251 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:30,251 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:30,251 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:30,252 - INFO - ETF 21: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:30,252 - INFO - 
+Processing ETF 22: Amundi MSCI EMU UCITS ETF Dist (https://www.justetf.com/de/etf-profile.html?isin=LU1646360971)
+2025-06-13 22:33:30,672 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:30,675 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:30,675 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:30,680 - INFO - Found Factsheet link: https://api.fundinfo.com/document/2ffc7719004808913b18b3d90c837b59_346747/MR_DE_de_LU1646360971_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:30,981 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:30,981 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:30,982 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:31,563 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:31,563 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:31,563 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:31,564 - INFO - ETF 22: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:31,564 - INFO - 
+Processing ETF 23: Amundi Prime Europe UCITS ETF DR (D) (https://www.justetf.com/de/etf-profile.html?isin=LU1931974262)
+2025-06-13 22:33:32,003 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:32,010 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:32,010 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:32,014 - INFO - Found Factsheet link: https://api.fundinfo.com/document/9cf47979207c99ef65db9c8e92115b29_414702/MR_DE_de_LU1931974262_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:33:32,179 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:32,180 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:32,180 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:32,180 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:32,907 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:32,907 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:32,908 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:32,908 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:32,908 - INFO - ETF 23: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:32,908 - INFO - 
+Processing ETF 24: Amundi Prime Eurozone UCITS ETF DR (D) (https://www.justetf.com/de/etf-profile.html?isin=LU1931974429)
+2025-06-13 22:33:33,492 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:33,502 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:33,503 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:33,508 - INFO - Found Factsheet link: https://api.fundinfo.com/document/8d53df4e0357e1c3c3dc8746f0088fae_999909/MR_DE_de_LU1931974429_YES_2025-05-31.pdf. Downloading PDF...
+2025-06-13 22:33:33,790 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:33,790 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:33,791 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:33,791 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:34,535 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:34,535 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:34,535 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:34,535 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:34,535 - INFO - ETF 24: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:34,536 - INFO - 
+Processing ETF 25: Amundi Stoxx Europe 600 UCITS ETF - EUR Hedged Dist (https://www.justetf.com/de/etf-profile.html?isin=LU1574142243)
+2025-06-13 22:33:35,103 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:35,127 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:35,127 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:35,156 - INFO - Found Factsheet link: https://api.fundinfo.com/document/bfa03f10b527fe94be27c9f7af1ce977_1968239/MR_DE_de_LU1574142243_RES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:35,485 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:35,486 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:35,487 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:35,487 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,344 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,345 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,345 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,345 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,346 - INFO - ETF 25: Dividendenrendite found: 2,37%
+2025-06-13 22:33:36,346 - INFO - 
+Processing ETF 26: BNP Paribas Easy EURO STOXX 50 UCITS ETF (https://www.justetf.com/de/etf-profile.html?isin=FR0012740983)
+2025-06-13 22:33:36,769 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:36,772 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:36,772 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:36,780 - INFO - Found Factsheet link: https://api.fundinfo.com/document/cea8e2a559fa4afda8e6be270603e00b_222233/MR_DE_de_FR0012740983_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:36,977 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,977 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,977 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,978 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,978 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,978 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:36,978 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:37,542 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:37,542 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:37,542 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:37,542 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:37,542 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:37,542 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:37,542 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:37,543 - INFO - ETF 26: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:37,543 - INFO - 
+Processing ETF 27: BNP Paribas Easy STOXX Europe 600 UCITS ETF (https://www.justetf.com/de/etf-profile.html?isin=FR0011550672)
+2025-06-13 22:33:38,030 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:38,038 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:38,038 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:38,051 - INFO - Found Factsheet link: https://api.fundinfo.com/document/25ae759bb6a4bd519d9811521f20326f_204083/MR_DE_de_FR0011550672_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:38,168 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,168 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,168 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,168 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,169 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,169 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,675 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,675 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,675 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,675 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,675 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,675 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:38,676 - INFO - ETF 27: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:38,676 - INFO - 
+Processing ETF 28: Deka EURO STOXX 50 UCITS ETF (https://www.justetf.com/de/etf-profile.html?isin=DE000ETFL029)
+2025-06-13 22:33:39,188 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:39,202 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:39,202 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:39,207 - INFO - Found Factsheet link: https://api.fundinfo.com/document/28204f81221db0e08030379a07e689ec_510433/MR_DE_de_DE000ETFL029_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:39,392 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:39,393 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:39,393 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:39,393 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:39,394 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:39,746 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:39,746 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:39,746 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:39,746 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:39,746 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:39,746 - INFO - ETF 28: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:39,747 - INFO - 
+Processing ETF 29: Deka MSCI Europe UCITS ETF (https://www.justetf.com/de/etf-profile.html?isin=DE000ETFL284)
+2025-06-13 22:33:40,295 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:40,297 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:40,297 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:40,305 - INFO - Found Factsheet link: https://api.fundinfo.com/document/f5f1e7f014a972e841140b85dc0c0dd9_507998/MR_DE_de_DE000ETFL284_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:40,607 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:40,607 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:40,608 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:40,608 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:40,934 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:40,935 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:40,935 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:40,935 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:40,935 - INFO - ETF 29: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:40,935 - INFO - 
+Processing ETF 30: Deka STOXX Europe 50® UCITS ETF (https://www.justetf.com/de/etf-profile.html?isin=DE000ETFL250)
+2025-06-13 22:33:41,414 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:41,421 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:41,421 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:41,428 - INFO - Found Factsheet link: https://api.fundinfo.com/document/3197a547d483bff2a24831d55cda4578_510940/MR_DE_de_DE000ETFL250_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:41,598 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:41,599 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:41,599 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:41,599 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:41,599 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:41,945 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:41,945 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:41,945 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:41,945 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:41,946 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:41,946 - INFO - ETF 30: Dividendenrendite found: no DivRendite found
+2025-06-13 22:33:41,946 - INFO - 
+Processing ETF 31: HSBC EURO STOXX 50 UCITS ETF EUR (https://www.justetf.com/de/etf-profile.html?isin=IE00B4K6B022)
+2025-06-13 22:33:42,372 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:42,375 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:42,375 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:42,379 - INFO - Found Factsheet link: https://api.fundinfo.com/document/7c6ff282c18a37da7adae5485c2303d1_422978/MR_DE_de_IE00B4K6B022_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:42,518 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:42,518 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:42,518 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:42,519 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:42,967 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:42,967 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:42,967 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:42,967 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:42,967 - INFO - ETF 31: Dividendenrendite found: 2,82%
+2025-06-13 22:33:42,968 - INFO - 
+Processing ETF 32: HSBC MSCI Europe UCITS ETF EUR (https://www.justetf.com/de/etf-profile.html?isin=IE00B5BD5K76)
+2025-06-13 22:33:43,468 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:43,472 - INFO - ETF profile page loaded (h1 found).
+2025-06-13 22:33:43,472 - INFO - Looking for Factsheet link with XPath: //a[contains(@class, 'download-link') and @title='Factsheet (DE)' and contains(normalize-space(), 'Factsheet (DE)')]
+2025-06-13 22:33:43,479 - INFO - Found Factsheet link: https://api.fundinfo.com/document/edc86b0786a643cf384cd8d8df803b6f_424260/MR_DE_de_IE00B5BD5K76_YES_2025-04-30.pdf. Downloading PDF...
+2025-06-13 22:33:43,637 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:43,637 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:43,637 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:43,638 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:44,118 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:44,118 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:44,118 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:44,118 - WARNING - CropBox missing from /Page, defaulting to MediaBox
+2025-06-13 22:33:44,118 - INFO - ETF 32: Dividendenrendite found: 2,81%
+2025-06-13 22:33:44,119 - INFO - 
+Processing ETF 33: Invesco EURO STOXX 50 UCITS ETF Dist (https://www.justetf.com/de/etf-profile.html?isin=IE00B5B5TG76)
+2025-06-13 22:33:44,184 - INFO - Waiting for ETF profile page to load (e.g., for an h1 tag)...
+2025-06-13 22:33:44,706 - ERROR - Selenium WebDriver error: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=137.0.7151.104)
+Stacktrace:
+0   chromedriver                        0x0000000100f6a668 cxxbridge1$str$ptr + 2723108
+1   chromedriver                        0x0000000100f628dc cxxbridge1$str$ptr + 2690968
+2   chromedriver                        0x0000000100ab6714 cxxbridge1$string$len + 90428
+3   chromedriver                        0x0000000100a90740 chromedriver + 132928
+4   chromedriver                        0x0000000100b259e4 cxxbridge1$string$len + 545804
+5   chromedriver                        0x0000000100b3e908 cxxbridge1$string$len + 647984
+6   chromedriver                        0x0000000100af19c8 cxxbridge1$string$len + 332784
+7   chromedriver                        0x0000000100f2e28c cxxbridge1$str$ptr + 2476360
+8   chromedriver                        0x0000000100f31520 cxxbridge1$str$ptr + 2489308
+9   chromedriver                        0x0000000100f0fa78 cxxbridge1$str$ptr + 2351412
+10  chromedriver                        0x0000000100f31da8 cxxbridge1$str$ptr + 2491492
+11  chromedriver                        0x0000000100f00d6c cxxbridge1$str$ptr + 2290728
+12  chromedriver                        0x0000000100f51d74 cxxbridge1$str$ptr + 2622512
+13  chromedriver                        0x0000000100f51f00 cxxbridge1$str$ptr + 2622908
+14  chromedriver                        0x0000000100f62528 cxxbridge1$str$ptr + 2690020
+15  libsystem_pthread.dylib             0x0000000186c6ac0c _pthread_start + 136
+16  libsystem_pthread.dylib             0x0000000186c65b80 thread_start + 8
+
+2025-06-13 22:33:44,706 - INFO - Closing WebDriver.
